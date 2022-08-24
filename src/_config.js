@@ -1,28 +1,26 @@
 /** @format */
 
 export const process = {
-	dev: true,
-};
+	dev: true
+}
 
 export const site = {
-	home: process.dev
-		? "http://localhost:8080/"
-		: "http://192.168.92.133:8080/",
-};
+	home: process.dev ? 'http://localhost:8080/' : 'http://192.168.92.133:8080/'
+}
 
 export const app = {
-	title: "Template vue",
-};
+	title: 'Clash of Clans'
+}
 
 export const links = [
 	{
-		title: "Home",
-		alias: "home",
-		url: "/",
+		title: 'Home',
+		alias: 'home',
+		url: '/'
 	},
 	{
-		title: "About",
-		alias: "about",
-		url: "/about",
-	},
-];
+		title: 'About',
+		alias: 'about',
+		url: '/about'
+	}
+]
