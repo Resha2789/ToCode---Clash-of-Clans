@@ -9,7 +9,7 @@ export const site = {
 }
 
 export const app = {
-	title: 'Clash of Clans'
+	title: 'Clash of Clans!'
 }
 
 export const links = [
