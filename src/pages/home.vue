@@ -3,7 +3,11 @@
 <template>
 	<div class="mb-body">
 		<div class="card_wrapper" v-for="(item, id) in items" :key="id">
-			<card :name="`${item.lvl} level`" :title="item.title">
+			<card
+				:name="`${item.lvl} level`"
+				:title="item.title"
+				:imgUrl="item.imgUrl"
+			>
 				{{ item.descr }}
 			</card>
 		</div>
@@ -22,13 +26,15 @@ export default {
 					id: 1,
 					title: 'Archer',
 					descr: 'Archer, Archer, Archer',
-					lvl: 4
+					lvl: 4,
+					imgUrl: require('@/assets/Img/archer.png')
 				},
 				{
 					id: 2,
 					title: 'Wizard',
 					descr: 'Wizard, Wizard, Wizard',
-					lvl: 5
+					lvl: 5,
+					imgUrl: require('@/assets/Img/wizard.png')
 				}
 			]
 		}
