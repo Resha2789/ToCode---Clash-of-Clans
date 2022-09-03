@@ -6,9 +6,28 @@
 			<card
 				:name="`${item.lvl} level`"
 				:title="item.title"
-				:imgUrl="item.imgUrl"
+				:imgUrl="item.img"
+				:link="item.alias"
 			>
-				{{ item.descr }}
+				<template v-slot:body>
+					{{ item.descr }}
+				</template>
+				<template v-slot:footer>
+					<div class="card-stats">
+						<div
+							class="one-third"
+							v-for="(stat, index) in item.info"
+							:key="index"
+						>
+							<div class="stat-value">
+								{{ stat.value }}
+							</div>
+							<div class="stat">
+								{{ stat.title }}
+							</div>
+						</div>
+					</div>
+				</template>
 			</card>
 		</div>
 	</div>
@@ -16,28 +35,20 @@
 
 <script>
 import Card from '@/components/UI/Card.vue'
+import items from '@/seeders/items'
 
 export default {
 	components: { Card },
 	data() {
 		return {
-			items: [
-				{
-					id: 1,
-					title: 'Archer',
-					descr: 'Archer, Archer, Archer',
-					lvl: 4,
-					imgUrl: require('@/assets/Img/archer.png')
-				},
-				{
-					id: 2,
-					title: 'Wizard',
-					descr: 'Wizard, Wizard, Wizard',
-					lvl: 5,
-					imgUrl: require('@/assets/Img/wizard.png')
-				}
-			]
+			items
 		}
 	}
 }
 </script>
+
+<style lang="scss">
+.card_wrapper {
+	text-align: center;
+}
+</style>

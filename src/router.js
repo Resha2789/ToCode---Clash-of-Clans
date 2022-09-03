@@ -5,6 +5,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomePage from '@/pages/home'
 import AboutPage from '@/pages/about'
 import NotFound from '@/pages/notFound'
+import ItemAlias from '@/components/itemAlias'
 
 const history = createWebHashHistory()
 
@@ -18,6 +19,11 @@ const routes = [
 		path: '/about',
 		name: 'about',
 		component: AboutPage
+	},
+	{
+		path: '/:itemAlias',
+		name: 'itemAlias',
+		component: ItemAlias
 	},
 	{
 		path: '/:pathMatch(.*)*',

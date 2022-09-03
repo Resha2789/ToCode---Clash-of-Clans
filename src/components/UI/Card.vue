@@ -8,8 +8,17 @@
 		<span class="card-name">{{ name }}</span>
 		<span class="card-title">{{ title }}</span>
 		<div class="card-body">
-			<slot>Description</slot>
+			<slot name="body"></slot>
+
+			<router-link
+				v-if="link"
+				:to="link"
+				class="link"
+				style="display: block; margin-top: 16px"
+				>{{ title }}
+			</router-link>
 		</div>
+		<slot name="footer"></slot>
 	</div>
 </template>
 
@@ -26,7 +35,16 @@ export default {
 		},
 		imgUrl: {
 			type: String
+		},
+		link: {
+			type: String
 		}
 	}
 }
 </script>
+
+<style lang="scss">
+.card {
+	margin: 20px 0px;
+}
+</style>
