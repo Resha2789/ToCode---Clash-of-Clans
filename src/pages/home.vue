@@ -1,54 +1,93 @@
 <!-- @format -->
 
 <template>
-	<div class="mb-body">
-		<div class="card_wrapper" v-for="(item, id) in items" :key="id">
+	<carousel :settings="settings" :breakpoints="breakpoints">
+		<slide class="card_wrapper" v-for="(item, id) in items" :key="id">
 			<card
 				:name="`${item.lvl} level`"
 				:title="item.title"
 				:imgUrl="item.img"
 				:link="item.alias"
+				class="carousel__item"
 			>
 				<template v-slot:body>
 					{{ item.descr }}
 				</template>
 				<template v-slot:footer>
-					<div class="card-stats">
-						<div
-							class="one-third"
-							v-for="(stat, index) in item.info"
-							:key="index"
-						>
-							<div class="stat-value">
-								{{ stat.value }}
-							</div>
-							<div class="stat">
-								{{ stat.title }}
-							</div>
-						</div>
-					</div>
+					<personState :item="item" />
 				</template>
 			</card>
-		</div>
-	</div>
+		</slide>
+		<template #addons>
+			<navigation />
+			<pagination />
+		</template>
+	</carousel>
 </template>
 
 <script>
-import Card from '@/components/UI/Card.vue'
+import Card from '@/components/UI/Card'
 import items from '@/seeders/items'
+import PersonState from '@/components/UI/PersonState'
+
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Navigation } from 'vue3-carousel'
 
 export default {
-	components: { Card },
+	components: {
+		Card,
+		PersonState,
+		Carousel,
+		Slide,
+		Navigation
+	},
 	data() {
 		return {
-			items
+			items,
+			settings: {
+				itemsToShow: 2.5,
+				snapAlign: 'center',
+				wrapAround: true
+			},
+			breakpoints: {
+				// 700px and up
+				300: {
+					itemsToShow: 1,
+					snapAlign: 'center'
+				},
+				// 1024 and up
+				1024: {
+					itemsToShow: 3,
+					snapAlign: 'center'
+				}
+			}
 		}
 	}
 }
 </script>
 
 <style lang="scss">
-.card_wrapper {
-	text-align: center;
+.carousel__slide > .carousel__item {
+	transform: scale(1);
+	opacity: 0.5;
+	transition: 0.5s;
+}
+.carousel__slide--visible > .carousel__item {
+	opacity: 1;
+	transform: rotateY(0);
+}
+.carousel__slide--next > .carousel__item {
+	transform: scale(0.9) translate(-10px);
+}
+.carousel__slide--prev > .carousel__item {
+	transform: scale(0.9) translate(10px);
+}
+.carousel__slide--active > .carousel__item {
+	transform: scale(1.1);
+}
+
+.carousel__prev,
+.carousel__next {
+	background-color: #ec9b3b;
 }
 </style>
